@@ -640,7 +640,7 @@ arrange(litters_data, pups_born_alive, gd0_weight) </code></pre>
 </div>
 <div id="piping" class="section level2">
 <h2>Piping</h2>
-<p>Looking at</p>
+<p>Look at intermediate object approach:</p>
 <pre class="r"><code>litters_data_raw = read_csv(&quot;./data/FAS_litters.csv&quot;,
   col_types = &quot;ccddiiii&quot;)
 litters_data_clean_names = janitor::clean_names(litters_data_raw)
@@ -664,6 +664,8 @@ litters_data_with_vars</code></pre>
 ## 10 con8  #3/5/2/2/95         28.5        NA            20               8
 ## # ... with 39 more rows, and 2 more variables: pups_dead_birth &lt;int&gt;,
 ## #   wt_gain &lt;dbl&gt;</code></pre>
+<pre class="r"><code># View(litters_data_with_vars)</code></pre>
+<p>Use nested function calls:</p>
 <pre class="r"><code>litters_data_clean = 
   mutate(
     select(
@@ -691,11 +693,12 @@ litters_data_clean</code></pre>
 ## 10 con8  #3/5/2/2/95         28.5        NA            20               8
 ## # ... with 39 more rows, and 2 more variables: pups_dead_birth &lt;int&gt;,
 ## #   wt_gain &lt;dbl&gt;</code></pre>
-<p>using piping</p>
+<pre class="r"><code># View(litters_data_clean)</code></pre>
+<p>Use piping(do not need to name anything)</p>
 <pre class="r"><code>read_csv(&quot;./data/FAS_litters.csv&quot;, col_types = &quot;ccddiiii&quot;) %&gt;%
   janitor::clean_names() %&gt;%
-  select(-pups_survive) %&gt;%
-  mutate(
+  select(-pups_survive) %&gt;% # or select(., -pups_survive)
+  mutate(., 
     wt_gain = gd18_weight - gd0_weight,
     group = tolower(group)
   ) %&gt;%
@@ -716,14 +719,16 @@ litters_data_clean</code></pre>
 ## # ... with 24 more rows, and 2 more variables: pups_dead_birth &lt;int&gt;,
 ## #   wt_gain &lt;dbl&gt;</code></pre>
 <p>Illustrate placeholder use with ‘lm’</p>
-<pre class="r"><code>read_csv(&quot;./data/FAS_litters.csv&quot;, col_types = &quot;ccddiiii&quot;) %&gt;%
+<pre class="r"><code>  read_csv(&quot;./data/FAS_litters.csv&quot;, col_types = &quot;ccddiiii&quot;)  %&gt;% 
   janitor::clean_names() %&gt;%
   select(-pups_survive) %&gt;%
   mutate(
      wt_gain = gd18_weight - gd0_weight,
     group = tolower(group)
   ) %&gt;%
-  filter(!is.na(gd0_weight)) %&gt;%
+  filter(!is.na(gd0_weight)) %&gt;% 
+  
+  # ?lm
   lm(gd18_weight ~ gd0_weight, data = .)</code></pre>
 <pre><code>## 
 ## Call:
