@@ -8,13 +8,13 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(tidyverse)
+library(tidyverse)   # collection of some package which make things more easily
 ```
 
 
 ## Import FAS csv files
 
-Import my csv file to use as example.
+Import my csv files to use as examples.
 
 ```{r}
 litters_data = read_csv("./data/FAS_litters.csv",
