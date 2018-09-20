@@ -389,6 +389,26 @@ select(litters_data, litter_number, everything())</code></pre>
 ## 15 Low8  #100                20          39.2          20               8
 ## 16 Low8  #108                25.6        47.5          20               8
 ## # ... with 2 more variables: pups_dead_birth &lt;int&gt;, pups_survive &lt;int&gt;</code></pre>
+<pre class="r"><code>filter(litters_data, is.na(gd0_weight))</code></pre>
+<pre><code>## # A tibble: 15 x 8
+##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
+##    &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;           &lt;int&gt;
+##  1 Con7  #4/2/95/3-3           NA        NA            20               6
+##  2 Con7  #2/2/95/3-2           NA        NA            20               6
+##  3 Con7  #1/5/3/83/3-~         NA        NA            20               9
+##  4 Con8  #3/83/3-3             NA        NA            20               9
+##  5 Con8  #2/95/3               NA        NA            20               8
+##  6 Con8  #1/6/2/2/95-2         NA        NA            20               7
+##  7 Con8  #3/5/3/83/3-~         NA        NA            20               8
+##  8 Con8  #2/2/95/2             NA        NA            19               5
+##  9 Con8  #3/6/2/2/95-3         NA        NA            20               7
+## 10 Mod7  #1/82/3-2             NA        NA            19               6
+## 11 Mod7  #3/83/3-2             NA        NA            19               8
+## 12 Mod7  #2/95/2-2             NA        NA            20               7
+## 13 Mod7  #8/110/3-2            NA        NA            20               9
+## 14 Mod8  #5/93                 NA        41.1          20              11
+## 15 Mod8  #5/93/2               NA        NA            19               8
+## # ... with 2 more variables: pups_dead_birth &lt;int&gt;, pups_survive &lt;int&gt;</code></pre>
 <pre class="r"><code>filter(litters_data, !is.na(gd0_weight))</code></pre>
 <pre><code>## # A tibble: 34 x 8
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
@@ -405,6 +425,19 @@ select(litters_data, litter_number, everything())</code></pre>
 ## 10 Mod7  #4/2/95/2           23.5        NA            19               9
 ## # ... with 24 more rows, and 2 more variables: pups_dead_birth &lt;int&gt;,
 ## #   pups_survive &lt;int&gt;</code></pre>
+<pre class="r"><code>filter(litters_data, group == &quot;Low7&quot;)</code></pre>
+<pre><code>## # A tibble: 8 x 8
+##   group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
+##   &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;           &lt;int&gt;
+## 1 Low7  #84/2               24.3        40.8          20               8
+## 2 Low7  #107                22.6        42.4          20               9
+## 3 Low7  #85/2               22.2        38.5          20               8
+## 4 Low7  #98                 23.8        43.8          20               9
+## 5 Low7  #102                22.6        43.3          20              11
+## 6 Low7  #101                23.8        42.7          20               9
+## 7 Low7  #111                25.5        44.6          20               3
+## 8 Low7  #112                23.9        40.5          19               6
+## # ... with 2 more variables: pups_dead_birth &lt;int&gt;, pups_survive &lt;int&gt;</code></pre>
 <pre class="r"><code>filter(litters_data, group == &quot;Low8&quot; | group == &quot;Low7&quot;)</code></pre>
 <pre><code>## # A tibble: 15 x 8
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
@@ -425,7 +458,8 @@ select(litters_data, litter_number, everything())</code></pre>
 ## 14 Low8  #99                 23.5        39            20               6
 ## 15 Low8  #110                25.5        42.7          20               7
 ## # ... with 2 more variables: pups_dead_birth &lt;int&gt;, pups_survive &lt;int&gt;</code></pre>
-<pre class="r"><code>filter(litters_data, group %in% c(&quot;Low8&quot;,  &quot;Low7&quot;))</code></pre>
+<pre class="r"><code># use %in% to detect if values appear in a set
+filter(litters_data, group %in% c(&quot;Low8&quot;,  &quot;Low7&quot;))</code></pre>
 <pre><code>## # A tibble: 15 x 8
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
 ##    &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;           &lt;int&gt;
@@ -479,7 +513,7 @@ select(litters_data, litter_number, everything())</code></pre>
 ## 11 Low8  #99                 23.5        39            20               6
 ## 12 Low8  #110                25.5        42.7          20               7
 ## # ... with 2 more variables: pups_dead_birth &lt;int&gt;, pups_survive &lt;int&gt;</code></pre>
-<p>for pup_data:</p>
+<p>for pup_data: filter to include only pups with sex 1, filter to include only pups with PD walk less than 11 and sex 2</p>
 <pre class="r"><code>filter(pups_data, sex == 1)</code></pre>
 <pre><code>## # A tibble: 155 x 6
 ##    litter_number   sex pd_ears pd_eyes pd_pivot pd_walk
