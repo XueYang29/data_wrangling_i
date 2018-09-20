@@ -550,7 +550,7 @@ filter(litters_data, group %in% c(&quot;Low8&quot;,  &quot;Low7&quot;))</code></
 <p>Creat variables</p>
 <pre class="r"><code>mutate(litters_data, 
        wt_gain = gd18_weight - gd0_weight,
-       group = tolower(group))</code></pre>
+       group = tolower(group)) #tolower translate characters from upper to lower</code></pre>
 <pre><code>## # A tibble: 49 x 9
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
 ##    &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;           &lt;int&gt;
@@ -587,7 +587,7 @@ filter(litters_data, group %in% c(&quot;Low8&quot;,  &quot;Low7&quot;))</code></
 </div>
 <div id="arrange" class="section level2">
 <h2>Arrange</h2>
-<p>Arrange the data…</p>
+<p>Arrange the data…(not chance anything, just put the data in a new order)</p>
 <pre class="r"><code>arrange(litters_data, gd0_weight)</code></pre>
 <pre><code>## # A tibble: 49 x 8
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
@@ -604,7 +604,8 @@ filter(litters_data, group %in% c(&quot;Low8&quot;,  &quot;Low7&quot;))</code></
 ## 10 Mod7  #5/3/83/5-2         22.6        37            19               5
 ## # ... with 39 more rows, and 2 more variables: pups_dead_birth &lt;int&gt;,
 ## #   pups_survive &lt;int&gt;</code></pre>
-<pre class="r"><code>arrange(litters_data, pups_born_alive, gd0_weight)</code></pre>
+<pre class="r"><code># first arrange pups_born_alive and then arrange gd0_weight
+arrange(litters_data, pups_born_alive, gd0_weight) </code></pre>
 <pre><code>## # A tibble: 49 x 8
 ##    group litter_number gd0_weight gd18_weight gd_of_birth pups_born_alive
 ##    &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;           &lt;int&gt;

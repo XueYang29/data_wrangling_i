@@ -128,7 +128,7 @@ Creat variables
 ```{r}
 mutate(litters_data, 
        wt_gain = gd18_weight - gd0_weight,
-       group = tolower(group))
+       group = tolower(group)) #tolower translate characters from upper to lower
 
 mutate(litters_data,
        wt_gain = gd18_weight - gd0_weight,
@@ -138,12 +138,14 @@ mutate(litters_data,
 
 ## Arrange
 
-Arrange the data...
+Arrange the data...(not chance anything, just put the data in a new order)
 
 ```{r}
 arrange(litters_data, gd0_weight)
 
-arrange(litters_data, pups_born_alive, gd0_weight)
+# first arrange pups_born_alive and then arrange gd0_weight
+arrange(litters_data, pups_born_alive, gd0_weight) 
+
 arrange(litters_data,desc(pups_born_alive), gd0_weight)
 ```
 
