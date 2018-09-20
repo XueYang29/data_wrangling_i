@@ -185,7 +185,7 @@ read_csv("./data/FAS_litters.csv", col_types = "ccddiiii") %>%
     group = tolower(group)
   ) %>%
   filter(!is.na(gd0_weight)) %>%
-  lm(gd18_weight~gd0_weight, data = .)
+  lm(gd18_weight ~ gd0_weight, data = .)
 
 ```
 

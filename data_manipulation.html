@@ -650,7 +650,7 @@ litters_data_clean</code></pre>
     group = tolower(group)
   ) %&gt;%
   filter(!is.na(gd0_weight)) %&gt;%
-  lm(gd18_weight~gd0_weight, data = .)</code></pre>
+  lm(gd18_weight ~ gd0_weight, data = .)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = gd18_weight ~ gd0_weight, data = .)
