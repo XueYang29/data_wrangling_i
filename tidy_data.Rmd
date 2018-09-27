@@ -108,7 +108,7 @@ analysis_result %>%
   knitr::kable()
 ```
 
-## Binding 
+## Binding rows
 
 Read in LotR data:
 ```{r}
@@ -157,7 +157,10 @@ litter_data = read_csv("./data/FAS_litters.csv", col_types = "ccddiiii") %>%
 Create joined data
 
 ```{r}
+# not do any left_join or right_join after the pipes because pipes means to do things follow the last one, but join means to take two seperate thing together.
+
 fas_data = left_join(pup_data, litter_data, by = "litter_number")
 ```
+
 
 

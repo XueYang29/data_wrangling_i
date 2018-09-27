@@ -259,8 +259,8 @@ litters_data</code></pre>
 </tbody>
 </table>
 </div>
-<div id="binding" class="section level2">
-<h2>Binding</h2>
+<div id="binding-rows" class="section level2">
+<h2>Binding rows</h2>
 <p>Read in LotR data:</p>
 <pre class="r"><code>fellowship_ring = readxl::read_excel(&quot;./data/LotR_Words.xlsx&quot;, range = &quot;B3:D6&quot;) %&gt;%
   mutate(movie = &quot;fellowship_ring&quot;)
@@ -314,7 +314,9 @@ litter_data = read_csv(&quot;./data/FAS_litters.csv&quot;, col_types = &quot;ccd
 # View(pup_data)
 # View(litter_data)</code></pre>
 <p>Create joined data</p>
-<pre class="r"><code>fas_data = left_join(pup_data, litter_data, by = &quot;litter_number&quot;)</code></pre>
+<pre class="r"><code># not do any left_join or right_join after the pipes because pipes means to do things follow the last one, but join means to take two seperate thing together.
+
+fas_data = left_join(pup_data, litter_data, by = &quot;litter_number&quot;)</code></pre>
 </div>
 
 
